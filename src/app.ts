@@ -27,5 +27,7 @@ app.setErrorHandler((error, _, reply) => {
       .send({ message: 'Validation Error', issues: error.format() })
   }
 
+  console.error(error)
+
   return reply.status(500).send({ message: 'Internal Server Error' })
 })
