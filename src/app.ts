@@ -1,6 +1,6 @@
 import fastify from 'fastify'
-import { routes } from '@/routes'
+import { organozationRoutes } from '@/routes/organization'
 
 export const app = fastify()
 
-app.register(routes)
+app.register(organozationRoutes)
