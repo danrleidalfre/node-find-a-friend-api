@@ -14,8 +14,10 @@ describe('Create Organization', () => {
   it('should be able to create a organization', async () => {
     const response = await request(app.server).post('/organizations').send({
       name: 'Test Organization',
+      email: 'org@email.org',
       phone: '00999999999',
       city: 'Test City',
+      password: '123456',
     })
 
     expect(response.statusCode).toEqual(201)

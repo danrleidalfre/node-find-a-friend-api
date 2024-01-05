@@ -8,11 +8,13 @@ datasource db {
 }
 
 model Organization {
-  id    String @id @default(uuid())
-  name  String
-  phone String
-  city  String
-  pets  Pet[]
+  id            String  @id @default(uuid())
+  name          String
+  email         String? @unique
+  phone         String
+  city          String
+  password_hash String?
+  pets          Pet[]
 
   @@map("organizations")
 }
