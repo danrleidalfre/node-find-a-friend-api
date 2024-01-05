@@ -20,10 +20,10 @@ model Organization {
 }
 
 model Pet {
-  id              String       @id @default(uuid())
+  id              String        @id @default(uuid())
   name            String
-  organization    Organization @relation(fields: [organization_id], references: [id])
-  organization_id String
+  organization    Organization? @relation(fields: [organization_id], references: [id])
+  organization_id String?
 
   @@map("pets")
 }
