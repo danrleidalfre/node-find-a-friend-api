@@ -8,12 +8,12 @@ datasource db {
 }
 
 model Organization {
-  id            String  @id @default(uuid())
+  id            String @id @default(uuid())
   name          String
-  email         String? @unique
+  email         String @unique
   phone         String
   city          String
-  password_hash String?
+  password_hash String
   pets          Pet[]
 
   @@map("organizations")
