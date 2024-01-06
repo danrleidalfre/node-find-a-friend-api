@@ -18,4 +18,10 @@ export class PrismaPets implements Pets {
       where: { organization_id: { in: orgIds } },
     })
   }
+
+  async getById(id: string) {
+    return prisma.pet.findFirst({
+      where: { id },
+    })
+  }
 }

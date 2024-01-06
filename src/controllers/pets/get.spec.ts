@@ -2,7 +2,7 @@ import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 import { app } from '@/app'
 import request from 'supertest'
 
-describe('Fetch Pets', () => {
+describe('Get Pet', () => {
   beforeAll(async () => {
     await app.ready()
   })
@@ -11,7 +11,7 @@ describe('Fetch Pets', () => {
     await app.close()
   })
 
-  it('should be able to list pets in city', async () => {
+  it('should be able to get pet', async () => {
     await request(app.server).post('/organizations').send({
       name: 'Org Example',
       email: 'org@email.org',
@@ -34,19 +34,22 @@ describe('Fetch Pets', () => {
         name: 'Pet Example',
       })
 
-    const response = await request(app.server)
+    const petResponse = await request(app.server)
       .get('/pets')
       .query({
         city: 'Org City',
       })
       .send()
 
+    const { id } = petResponse.body.pets[0]
+
+    const response = await request(app.server).get(`/pets/${id}`).send()
+
     expect(response.statusCode).toEqual(200)
-    expect(response.body.pets).toHaveLength(1)
-    expect(response.body.pets).toEqual([
+    expect(response.body.pet).toEqual(
       expect.objectContaining({
         name: 'Pet Example',
       }),
-    ])
+    )
   })
 })

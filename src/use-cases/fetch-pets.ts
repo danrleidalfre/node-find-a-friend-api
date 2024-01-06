@@ -1,11 +1,11 @@
 import { Pet } from '@prisma/client'
 import { Pets } from '@/repositories/pets'
 
-interface SearchPetsUseCaseRequest {
+interface FetchPetsUseCaseRequest {
   city: string
 }
 
-interface SearchPetsUseCaseResponse {
+interface FetchPetsUseCaseResponse {
   pets: Pet[]
 }
 
@@ -14,7 +14,7 @@ export class FetchPetsUseCase {
 
   async execute({
     city,
-  }: SearchPetsUseCaseRequest): Promise<SearchPetsUseCaseResponse> {
+  }: FetchPetsUseCaseRequest): Promise<FetchPetsUseCaseResponse> {
     const pets = await this.petsRepository.fetchMany(city)
 
     return { pets }
